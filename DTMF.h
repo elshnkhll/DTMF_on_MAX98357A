@@ -34,16 +34,4 @@ void SPKR_Play_DTMF(int tone) {
     SPKR_Play_Sample( (int) smpl_16_b );
   }
 }
-void SPKR_Play_Tone(int freqOfTone) {
-  int samplesCount = 1000; // 1/8 of a second
-  float amplitude = 20.0;
-  float w = 2.0 * 3.14159265359 * (float)freqOfTone / (float)sampleRate;
 
-  for (int n = 0; n < samplesCount; n++) {
-    int smpl = amplitude * sin( (float)n * w );
-    byte c_1 = smpl >> 8;
-    byte c_2 = (byte)smpl;
-    char smpl_16_b[2] = {c_1, c_2};
-    SPKR_Play_Sample( (int) smpl_16_b );
-  }
-}
